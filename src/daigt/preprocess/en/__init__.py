@@ -6,9 +6,51 @@ import spacy
 
 from daigt.preprocess import Preprocessor
 
-__all__ = ["BasicPreprocessor", "BowPreprocessor"]
+__all__ = [
+    "BasicPreprocessor",
+    "BowPreprocessor",
+    "digit_frac",
+    "letter_frac",
+    "space_frac",
+    "punc_frac",
+    "upper_frac",
+    "repeat_char_frac",
+    "repeat_substring_frac",
+]
 
 log = scml.get_logger(__name__)
+_r_char = snlp.RepeatingCharacter(max_times=3, letters=True, punctuation=True)
+_r_substring = snlp.RepeatingSubstring(
+    min_length=3, max_times=1, letters=True, punctuation=True
+)
+
+
+def digit_frac(s: str) -> float:
+    return snlp.count_digit(s) / len(s)  # type: ignore
+
+
+def letter_frac(s: str) -> float:
+    return snlp.count_alpha(s) / len(s)  # type: ignore
+
+
+def space_frac(s: str) -> float:
+    return snlp.count_space(s) / len(s)  # type: ignore
+
+
+def punc_frac(s: str) -> float:
+    return snlp.count_punctuation(s) / len(s)  # type: ignore
+
+
+def upper_frac(s: str) -> float:
+    return snlp.count_upper(s) / len(s)  # type: ignore
+
+
+def repeat_char_frac(s: str) -> float:
+    return _r_char.count(s) / len(s)  # type: ignore
+
+
+def repeat_substring_frac(s: str) -> float:
+    return _r_substring.count_char(s) / len(s)  # type: ignore
 
 
 class BasicPreprocessor(Preprocessor):
