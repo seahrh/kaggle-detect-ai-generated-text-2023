@@ -1,0 +1,4 @@
+exclude *.ipynb
+include *.ini
+#graft data
+include models/xgb/20240117_020926/model.json
