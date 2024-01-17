@@ -1,6 +1,6 @@
 exclude *.ipynb
 include *.ini
 #graft data
-include models/xgb/20240117_020926/model.json
+include models/xgb/20240118_071558/model.json
 include huggingface/microsoft/deberta-v3-base/*.json
 include huggingface/microsoft/deberta-v3-base/*.model
