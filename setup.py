@@ -6,6 +6,7 @@ setup(
     version=__version__,
     python_requires=">=3.9,<3.12",
     install_requires=[
+        "textstat==0.7.3",
         "xgboost==2.0.3",
         "optuna==3.5.0",
         "pandas==2.0.3",
@@ -19,6 +20,10 @@ setup(
         "tqdm==4.66.1",
     ],
     extras_require={
+        "embeddings": [
+            "faiss-cpu==1.7.4",
+            "sentence-transformers==2.2.2",
+        ],
         "lint": [
             "black==23.7.0",
             "isort==5.13.2",
