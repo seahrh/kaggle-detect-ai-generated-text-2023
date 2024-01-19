@@ -1,6 +1,7 @@
 exclude *.ipynb
 include *.ini
 #graft data
-include models/xgb/20240119_023535/model.json
+include models/xgb/20240119_123616/model.json
+include input/NRC-VAD-Lexicon/NRC-VAD-Lexicon.txt
 include huggingface/microsoft/deberta-v3-base/*.json
 include huggingface/microsoft/deberta-v3-base/*.model
