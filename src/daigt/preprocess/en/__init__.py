@@ -1,5 +1,6 @@
 from typing import AnyStr, Set
 
+import numpy as np
 import scml
 import scml.nlp as snlp
 import spacy
@@ -16,6 +17,10 @@ __all__ = [
     "upper_frac",
     "repeat_char_frac",
     "repeat_substring_frac",
+    "sentence_length_std",
+    "sentence_length_mean",
+    "sentence_length_delta_std",
+    "sentence_length_delta_mean",
 ]
 
 log = scml.get_logger(__name__)
@@ -51,6 +56,42 @@ def repeat_char_frac(s: str) -> float:
 
 def repeat_substring_frac(s: str) -> float:
     return _r_substring.count_char(s) / len(s)  # type: ignore
+
+
+def sentence_length_mean(s: str) -> float:
+    sents = snlp.sentences(s)
+    sents = [len(s.split()) for s in sents]
+    return float(np.mean(sents))
+
+
+def sentence_length_std(s: str) -> float:
+    sents = snlp.sentences(s)
+    if len(sents) < 2:
+        return 0
+    sents = [len(s.split()) for s in sents]
+    return float(np.std(sents))
+
+
+def sentence_length_delta_mean(s: str) -> float:
+    sents = snlp.sentences(s)
+    if len(sents) < 2:
+        return 0
+    sents = [len(s.split()) for s in sents]
+    deltas = []
+    for i in range(1, len(sents)):
+        deltas.append(abs(sents[i] - sents[i - 1]))
+    return float(np.mean(deltas))
+
+
+def sentence_length_delta_std(s: str) -> float:
+    sents = snlp.sentences(s)
+    if len(sents) < 3:
+        return 0
+    sents = [len(s.split()) for s in sents]
+    deltas = []
+    for i in range(1, len(sents)):
+        deltas.append(abs(sents[i] - sents[i - 1]))
+    return float(np.std(deltas))
 
 
 class BasicPreprocessor(Preprocessor):
