@@ -35,7 +35,7 @@ setup(
             "pytest==7.4.4",
             "pytest-cov==4.1.0",
         ],
-        "notebook": ["jupyterlab==4.0.10", "ipywidgets==7.7.1", "seaborn==0.12.2"],
+        "notebook": ["jupyterlab==4.0.11", "ipywidgets==8.1.1", "seaborn==0.12.2"],
     },
     packages=find_packages("src", exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     package_dir={"": "src"},
