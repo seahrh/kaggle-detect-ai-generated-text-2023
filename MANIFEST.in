@@ -2,7 +2,7 @@ exclude *.ipynb
 include *.ini
 graft input/tokenizer
 include input/tfidf.json
-include models/xgb/20240122_134738/model.json
+include models/xgb/20240122_184023/model.json
 include input/NRC-VAD-Lexicon/NRC-VAD-Lexicon.txt
 include huggingface/microsoft/deberta-v3-base/*.json
 include huggingface/microsoft/deberta-v3-base/*.model
